@@ -1,0 +1,115 @@
+/* Custom CSS for Tupi Municipal Information Management System */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap');
+
+:root {
+  --primary-navy: #0f2c59;
+  --primary-blue: #1d4ed8;
+  --accent-blue: #2563eb;
+  --light-bg: #f8fafc;
+  --card-bg: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+/* Custom Navigation Glassmorphism */
+.sticky-header {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sticky-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Hero Mask Blend (Replicating hospital reference image composition) */
+.hero-gradient-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 48%;
+  background: linear-gradient(90deg, #f8fafc 0%, rgba(248, 250, 252, 0.98) 45%, rgba(248, 250, 252, 0.7) 75%, rgba(248, 250, 252, 0) 100%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .hero-gradient-mask {
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(180deg, #f8fafc 0%, rgba(248, 250, 252, 0.95) 70%, rgba(248, 250, 252, 0) 100%);
+  }
+}
+
+/* Feature Cards Overlap Bar */
+.floating-feature-bar {
+  z-index: 20;
+}
+
+/* Card Micro-interactions */
+.service-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.08), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Active Nav Indicator */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2.5px;
+  bottom: -6px;
+  left: 0;
+  background-color: #2563eb;
+  transition: width 0.25s ease-in-out;
+  border-radius: 2px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Toast styling */
+#toast {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modal styling */
+.modal-backdrop {
+  transition: opacity 0.25s ease;
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tupi Municipal Hospital Information Management System</title>
+  <meta name="description" content="Modern patient intake, symptom classification, interactive anatomical localization, and specialist matching system." />
+  
+  <!-- Google Fonts (Plus Jakarta Sans & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN with Custom Color Extensions -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#EFF6FF',
+              100: '#DBEAFE',
+              200: '#BFDBFE',
+              300: '#93C5FD',
+              400: '#60A5FA',
+              500: '#3B82F6',
+              600: '#2563EB',
+              700: '#1D4ED8',
+              800: '#1E40AF',
+              900: '#1E3A8A',
+            },
+            medical: {
+              teal: '#0D9488',
+              cyan: '#0284C7',
+              emerald: '#10B981',
+              slate: '#0F172A'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-medical-mesh min-h-screen text-slate-800 flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+  <!-- TOP EMERGENCY ADVISORY BAR (No Print) -->
+  <header class="no-print bg-slate-900 text-white text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-rose-500 text-white font-bold text-[10px]">!</span>
+        <span class="font-medium text-slate-300">
+          <strong class="text-white">Emergency Warning:</strong> If you are experiencing chest pain, severe bleeding, or difficulty breathing, call <a href="tel:911" class="text-blue-400 font-bold underline">911</a> immediately.
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400 text-[11px]">
+        <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> HIPAA Encrypted</span>
+        <span class="flex items-center gap-1"><i data-lucide="phone" class="w-3.5 h-3.5 text-blue-400"></i> Clinic Helpline: (800) 555-AURA</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN NAVIGATION & CLINIC BRAND (No Print) -->
+  <nav class="no-print sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-2xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-700 to-blue-500 text-white flex items-center justify-center shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M2 12h20M12 8l4 4-4 4-4-4 4-4z"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-lg font-black text-slate-900 tracking-tight">Tupi Municipal Hospital</span>
+            <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-blue-100 text-blue-800 uppercase tracking-wider">Clinical</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-medium">Digital Patient Intake & Pre-Consultation</p>
+        </div>
+      </a>
+
+      <!-- Quick Preset & Draft Indicators -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Live Draft Status Pill -->
+        <div class="hidden md:flex items-center gap-1.5 px-3 py-1 bg-slate-100/90 rounded-full border border-slate-200/80 text-xs font-semibold text-slate-600">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span id="draft-status-indicator">Auto-Saved</span>
+        </div>
+
+        <!-- Preset Cases Dropdown -->
+        <div class="hidden lg:flex items-center gap-2 pl-3 border-l border-slate-200">
+          <label for="header-demo-preset-select" class="text-xs font-bold text-slate-500">Quick Preset:</label>
+          <select id="header-demo-preset-select" class="text-xs bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 font-medium text-slate-700 focus:ring-2 focus:ring-blue-500 outline-none">
+            <option value="">-- Test Scenario --</option>
+            <option value="gastritis">🩺 Gastritis / Stomach Pain</option>
+            <option value="migraine">🧠 Severe Migraine</option>
+            <option value="chest_palp">🫀 Chest Palpitations</option>
+            <option value="knee_sprain">🦴 Knee Joint Pain</option>
+          </select>
+        </div>
+
+        <!-- Help / Support -->
+        <button type="button" onclick="alert('Hospital Support:\n\nOur patient concierge team is available 24/7 at (800) 555-AURA to assist you with registration or urgent clinical triage.')" class="p-2 rounded-xl text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition" title="Intake Support">
+          <i data-lucide="help-circle" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- MAIN WRAPPER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+    
+    <!-- STEPPER PROGRESS CONTAINER (Horizontal on Desktop, compact on Mobile) -->
+    <div class="no-print mb-8">
+      
+      <!-- Desktop Horizontal Stepper Bar -->
+      <div class="hidden md:flex items-center justify-between p-4 bg-white/80 backdrop-blur-md rounded-2xl border border-slate-200/80 shadow-2xs overflow-x-auto" id="desktop-stepper">
+        <!-- Injected via app.js updateProgressBar() -->
+      </div>
+
+      <!-- Mobile Compact Progress Indicator -->
+      <div class="md:hidden bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs space-y-2">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-700">
+          <span id="mobile-step-text">Step 1 of 8: Personal Info</span>
+          <span class="text-blue-600 font-extrabold">Patient Registration</span>
+        </div>
+        <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+          <div id="mobile-progress-fill" class="bg-blue-600 h-full rounded-full transition-all duration-300" style="width: 12.5%;"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MAIN FORM APPLICATION CARD -->
+    <div id="intake-card-container" class="bg-white/95 backdrop-blur-sm rounded-3xl border border-slate-200/90 shadow-xl shadow-slate-200/50 p-6 sm:p-10 transition-all duration-300">
+      
+      <!-- Dynamic Step Content Area -->
+      <div id="step-content-area">
+        <!-- Rendered dynamically by app.js based on state.currentStep -->
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- CLINICAL FOOTER (No Print) -->
+  <footer class="no-print mt-12 bg-white border-t border-slate-200 py-8 px-4 sm:px-6 lg:px-8 text-slate-500 text-xs">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-7 h-7 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
+          +
+        </div>
+        <div>
+          <span class="font-bold text-slate-900">Tupi Municipal Hospital Information Management System</span>
+          <p class="text-[11px] text-slate-400">Accredited Clinical Pre-Consultation Portal & Specialist Directory</p>
+        </div>
+      </div>
+
+      <!-- Regulatory & Safety Notice -->
+      <div class="text-center md:text-right text-[11px] text-slate-400 max-w-md">
+        <p>This digital intake system is intended for consultation preparation and symptom categorization. It does not replace professional medical diagnosis, advice, or treatment.</p>
+        <p class="mt-1 font-medium text-slate-500">© 2026 Tupi Municipal Hospital. All rights reserved.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- SCRIPT FILES (Data, Body Map Component, Main App) -->
+  <script src="js/data.js"></script>
+  <script src="js/body-map.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

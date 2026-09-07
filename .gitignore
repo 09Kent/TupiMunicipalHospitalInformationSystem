@@ -1,0 +1,33 @@
+# Operating System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Environment & Credentials
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Logs, Cache & Temporary files
+*.log
+logs/
+temp/
+tmp/
+cache/
+test_runner_*.php
+
+# Dependencies
+/vendor/
+/node_modules/
