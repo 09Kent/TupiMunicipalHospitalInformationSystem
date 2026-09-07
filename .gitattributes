@@ -1,0 +1,17 @@
+# Auto-detect text files and perform LF normalization
+* text=auto
+
+# Force GitHub Linguist to detect all PHP files as PHP (prevents misclassifying modern PHP 8 strict syntax as Hack)
+*.php linguist-language=PHP
+
+# Explicit language definitions
+*.js linguist-language=JavaScript
+*.css linguist-language=CSS
+*.html linguist-language=HTML
+*.sql linguist-language=SQL
+
+# Treat binary files properly
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.sqlite binary
