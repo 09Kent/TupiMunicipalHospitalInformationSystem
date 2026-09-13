@@ -31,3 +31,7 @@ test_runner_*.php
 # Dependencies
 /vendor/
 /node_modules/
+tmhis/vendor/
+tmhis/storage/*.key
+tmhis/public/storage/
+tmhis/public/build/
