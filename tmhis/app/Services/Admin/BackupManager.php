@@ -11,9 +11,9 @@ class BackupManager
     public function __construct()
     {
         $this->db = Database::getConnection();
-        $this->backupDir = __DIR__ . '/../backups';
+        $this->backupDir = function_exists('storage_path') ? storage_path('app/backups') : (__DIR__ . '/../backups');
         if (!is_dir($this->backupDir)) {
-            mkdir($this->backupDir, 0777, true);
+            @mkdir($this->backupDir, 0775, true);
         }
     }
 

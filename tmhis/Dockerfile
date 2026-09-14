@@ -59,8 +59,8 @@ RUN mkdir -p /var/www/html/bootstrap/cache \
 # Install Composer dependencies (production mode)
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
-# Configure final ownership & permissions for Laravel storage
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
+# Configure final ownership & permissions for Laravel storage and app
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/app && \
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Initialize MariaDB directory for standalone/cloud deployment

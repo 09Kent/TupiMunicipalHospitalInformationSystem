@@ -1,15 +1,19 @@
 #!/bin/sh
 set -e
 
-# Fix permissions for storage and bootstrap cache
+# Fix permissions for storage, bootstrap cache, and backups
 mkdir -p /var/www/html/storage/framework/cache/data \
          /var/www/html/storage/framework/sessions \
          /var/www/html/storage/framework/views \
          /var/www/html/storage/logs \
+         /var/www/html/storage/app/backups \
+         /var/www/html/app/Services/backups \
          /var/www/html/bootstrap/cache
 
-chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+chown -R www-data:www-data /var/www/html/storage \
+                           /var/www/html/bootstrap/cache \
+                           /var/www/html/app/Services
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/app/Services
 
 # Ensure .env file exists
 if [ ! -f /var/www/html/.env ]; then
