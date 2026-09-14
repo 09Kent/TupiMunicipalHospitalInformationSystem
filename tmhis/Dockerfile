@@ -13,7 +13,9 @@ RUN apk update && apk add --no-cache \
     unzip \
     oniguruma-dev \
     icu-dev \
-    linux-headers
+    linux-headers \
+    mariadb \
+    mariadb-client
 
 # Install PHP extensions required by Laravel & MySQL
 RUN docker-php-ext-install \
@@ -60,6 +62,11 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-di
 # Configure final ownership & permissions for Laravel storage
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Initialize MariaDB directory for standalone/cloud deployment
+RUN mkdir -p /run/mysqld /var/lib/mysql && \
+    chown -R mysql:mysql /run/mysqld /var/lib/mysql && \
+    mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
 # Expose HTTP port
 EXPOSE 80
