@@ -35,6 +35,9 @@ WORKDIR /var/www/html
 # Copy application code
 COPY . /var/www/html
 
+# Set environment for Composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # Copy Docker configurations
 COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
@@ -42,10 +45,19 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Make entrypoint executable
 RUN chmod +x /var/www/html/docker/entrypoint.sh
 
+# Ensure storage and bootstrap/cache directories exist and have proper permissions before composer install
+RUN mkdir -p /var/www/html/bootstrap/cache \
+             /var/www/html/storage/framework/cache/data \
+             /var/www/html/storage/framework/sessions \
+             /var/www/html/storage/framework/views \
+             /var/www/html/storage/logs && \
+    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
+    chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache
+
 # Install Composer dependencies (production mode)
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
-# Configure proper ownership & permissions for Laravel storage
+# Configure final ownership & permissions for Laravel storage
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
