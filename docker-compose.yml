@@ -25,13 +25,18 @@ services:
       db:
         condition: service_healthy
     volumes:
+      - ./tmhis/app:/var/www/html/app
+      - ./tmhis/resources:/var/www/html/resources
+      - ./tmhis/routes:/var/www/html/routes
+      - ./tmhis/public:/var/www/html/public
+      - ./tmhis/database:/var/www/html/database
       - storage_data:/var/www/html/storage
 
   db:
     image: mysql:8.4
     container_name: tmhis_db
     restart: unless-stopped
-    command: --default-authentication-plugin=mysql_native_password
+    command: --mysql-native-password=ON
     ports:
       - "3307:3306"
     environment:
@@ -39,13 +44,16 @@ services:
       MYSQL_DATABASE: MedicalRegistrationDB
     volumes:
       - db_data:/var/lib/mysql
-      - ./tmhis/database/sql/tmhis_master_schema.sql:/docker-entrypoint-initdb.d/01_master_schema.sql:ro
-      - ./tmhis/database/sql/comprehensive_seed.sql:/docker-entrypoint-initdb.d/02_comprehensive_seed.sql:ro
+      - ./tmhis/database/sql/register_schema.sql:/docker-entrypoint-initdb.d/01_register_schema.sql:ro
+      - ./tmhis/database/sql/doctor_schema.sql:/docker-entrypoint-initdb.d/02_doctor_schema.sql:ro
+      - ./tmhis/database/sql/tmhis_master_schema.sql:/docker-entrypoint-initdb.d/03_master_schema.sql:ro
+      - ./tmhis/database/sql/comprehensive_seed.sql:/docker-entrypoint-initdb.d/04_comprehensive_seed.sql:ro
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 15
+      start_period: 15s
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest

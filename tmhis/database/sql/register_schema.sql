@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Role` VARCHAR(50) NOT NULL DEFAULT 'Registrator',
   `Email` VARCHAR(120) NULL,
   `Status` ENUM('Active', 'Inactive', 'Suspended') NOT NULL DEFAULT 'Active',
+  `remember_token` VARCHAR(100) NULL,
   `CreatedAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedAt` DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
   INDEX `idx_user_login` (`Username`, `Status`)

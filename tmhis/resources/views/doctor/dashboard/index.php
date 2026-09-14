@@ -1,15 +1,15 @@
 <?php
 // Doctor/views/dashboard/index.php
 
-require_once __DIR__ . '/../../config/Database.php';
-require_once __DIR__ . '/../../includes/session.php';
-require_once __DIR__ . '/../../includes/functions.php';
-require_once __DIR__ . '/../../includes/auth.php';
-require_once __DIR__ . '/../../models/Doctor.php';
-require_once __DIR__ . '/../../models/Patient.php';
-require_once __DIR__ . '/../../models/Consultation.php';
-require_once __DIR__ . '/../../models/Diagnosis.php';
-require_once __DIR__ . '/../../includes/anatomy_model.php';
+require_once __DIR__ . '/../config/Database.php';
+require_once __DIR__ . '/../includes/session.php';
+require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../models/Doctor.php';
+require_once __DIR__ . '/../models/Patient.php';
+require_once __DIR__ . '/../models/Consultation.php';
+require_once __DIR__ . '/../models/Diagnosis.php';
+require_once __DIR__ . '/../includes/anatomy_model.php';
 
 $pageTitle = 'Dashboard | Doctor Portal • Tupi Municipal Hospital';
 $activeMenu = 'dashboard';
@@ -30,13 +30,13 @@ $todayQueue = $patientModel->getTodayQueue($doctorId);
 $activeConsultation = $consultationModel->getActiveConsultation($doctorId);
 $diagnosisStats = $diagnosisModel->getDistributionStats($doctorId);
 
-require_once __DIR__ . '/../../includes/header.php';
-require_once __DIR__ . '/../../includes/sidebar.php';
+require_once __DIR__ . '/../includes/header.php';
+require_once __DIR__ . '/../includes/sidebar.php';
 ?>
 
 <div class="flex-1 flex flex-col min-w-0 overflow-y-auto h-screen">
   
-  <?php require_once __DIR__ . '/../../includes/topbar.php'; ?>
+  <?php require_once __DIR__ . '/../includes/topbar.php'; ?>
 
   <main class="p-6 sm:p-8 space-y-8 flex-1">
 
@@ -395,4 +395,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>

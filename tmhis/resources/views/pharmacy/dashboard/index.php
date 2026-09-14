@@ -2,9 +2,9 @@
 // Pharmacy/views/dashboard/index.php
 
 require_once __DIR__ . '/../../config/Database.php';
-require_once __DIR__ . '/../../includes/session.php';
-require_once __DIR__ . '/../../includes/functions.php';
-require_once __DIR__ . '/../../includes/demo_data.php';
+require_once __DIR__ . '/../includes/session.php';
+require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/demo_data.php';
 
 $pageTitle   = 'Pharmacy Dashboard | Pharmacist • Tupi Municipal Hospital';
 $activeMenu  = 'dashboard';
@@ -30,8 +30,8 @@ $expirySoonCount = count(array_filter($expiryAlerts, fn($e) => $e['status'] === 
 $readyToDispense = count(array_filter($prescriptions, fn($r) => $r['status'] === 'Ready for Dispensing'));
 $totalInventoryUnits = array_sum(array_column($inventory, 'current_stock'));
 
-require_once __DIR__ . '/../../includes/header.php';
-require_once __DIR__ . '/../../includes/sidebar.php';
+require_once __DIR__ . '/../includes/header.php';
+require_once __DIR__ . '/../includes/sidebar.php';
 ?>
 
 <!-- ═══════════════════════════════════════════════════════ -->
@@ -39,7 +39,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
 <!-- ═══════════════════════════════════════════════════════ -->
 <div class="flex-1 flex flex-col min-w-0 overflow-y-auto h-screen">
 
-  <?php require_once __DIR__ . '/../../includes/topbar.php'; ?>
+  <?php require_once __DIR__ . '/../includes/topbar.php'; ?>
 
   <main class="p-5 sm:p-7 space-y-7 flex-1">
 
@@ -1115,4 +1115,4 @@ require_once __DIR__ . '/../../includes/sidebar.php';
   </main>
 </div><!-- /MAIN CONTENT WRAPPER -->
 
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>

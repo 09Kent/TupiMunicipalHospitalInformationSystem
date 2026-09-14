@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/legacy_bridge.php';
+require_once __DIR__ . '/legacy_helpers.php';
+
 if (!function_exists('format_date')) {
     function format_date(?string $dateString, string $format = 'd M Y'): string
     {
@@ -92,5 +95,12 @@ if (!function_exists('doctor_url')) {
     function doctor_url(string $path = ''): string
     {
         return url('/doctor/' . ltrim($path, '/'));
+    }
+}
+
+if (!function_exists('register_url')) {
+    function register_url(string $path = ''): string
+    {
+        return url('/register/' . ltrim($path, '/'));
     }
 }

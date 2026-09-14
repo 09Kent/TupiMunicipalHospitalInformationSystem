@@ -2,32 +2,34 @@
 -- Comprehensive Realistic Test Dataset (30+ records per major table)
 USE `MedicalRegistrationDB`;
 
+SET FOREIGN_KEY_CHECKS=0;
+
 -- ============================================================================
 -- 1. USER ACCOUNTS & FDD ROLES
 -- ============================================================================
 ALTER TABLE `users` MODIFY COLUMN `Role` VARCHAR(50) NOT NULL DEFAULT 'Registrator';
 
 INSERT INTO `users` (`UserID`, `FirstName`, `LastName`, `Username`, `PasswordHash`, `Role`, `Email`, `Status`) VALUES
-(1, 'System', 'Administrator', 'admin', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Admin', 'admin@tupihospital.gov.ph', 'Active'),
-(2, 'Maria', 'Santos', 'director', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Chief', 'director@tupihospital.gov.ph', 'Active'),
-(3, 'Mark Anthony', 'Valenzuela', 'records', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Records', 'records@tupihospital.gov.ph', 'Active'),
-(4, 'Sarah', 'Jenkins', 'registrator', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Register', 'registrator@tupihospital.gov.ph', 'Active'),
-(5, 'Kenneth', 'Garcia', 'doctor', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Doctor', 'doctor@tupihospital.gov.ph', 'Active'),
-(6, 'Elena', 'Gomez', 'nurse', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Nurse', 'nurse@tupihospital.gov.ph', 'Active'),
-(7, 'Clarisse Mae', 'Santos', 'medtech', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'MedTech', 'medtech@tupihospital.gov.ph', 'Active'),
-(8, 'Kareen Joy', 'Ramos', 'pharmacist', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Pharmacist', 'pharmacist@tupihospital.gov.ph', 'Active'),
-(9, 'Maria', 'Castillo', 'cashier', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Billing', 'cashier@tupihospital.gov.ph', 'Active'),
-(10, 'Daniel', 'Lewis', 'dr.lewis', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Doctor', 'dr.lewis@tupihospital.gov.ph', 'Active'),
-(11, 'Elena', 'Villanueva', 'dr.villanueva', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Doctor', 'dr.villanueva@tupihospital.gov.ph', 'Active'),
-(12, 'James', 'Wilson', 'dr.wilson', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Doctor', 'dr.wilson@tupihospital.gov.ph', 'Active'),
-(13, 'Sophia', 'Miller', 'dr.miller', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Doctor', 'dr.miller@tupihospital.gov.ph', 'Active'),
-(14, 'Carlos', 'Reyes', 'staff.reyes', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Nurse', 'carlos.reyes@tupihospital.gov.ph', 'Active'),
-(15, 'Ana', 'Bautista', 'staff.bautista', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Nurse', 'ana.bautista@tupihospital.gov.ph', 'Active'),
-(16, 'Michael', 'Chang', 'registrator2', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Register', 'michael.chang@tupihospital.gov.ph', 'Active'),
-(17, 'Joy', 'Mendoza', 'medtech2', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'MedTech', 'joy.mendoza@tupihospital.gov.ph', 'Active'),
-(18, 'Grace', 'DelaCruz', 'pharmacist2', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Pharmacist', 'grace.delacruz@tupihospital.gov.ph', 'Active'),
-(19, 'Arthur', 'Morales', 'cashier2', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Billing', 'arthur.morales@tupihospital.gov.ph', 'Active'),
-(20, 'Teresa', 'Aquino', 'records2', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Records', 'teresa.aquino@tupihospital.gov.ph', 'Active')
+(1, 'System', 'Administrator', 'admin', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Admin', 'admin@tupihospital.gov.ph', 'Active'),
+(2, 'Maria', 'Santos', 'director', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Chief', 'director@tupihospital.gov.ph', 'Active'),
+(3, 'Mark Anthony', 'Valenzuela', 'records', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Records', 'records@tupihospital.gov.ph', 'Active'),
+(4, 'Sarah', 'Jenkins', 'registrator', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Register', 'registrator@tupihospital.gov.ph', 'Active'),
+(5, 'Kenneth', 'Garcia', 'doctor', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Doctor', 'doctor@tupihospital.gov.ph', 'Active'),
+(6, 'Elena', 'Gomez', 'nurse', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Nurse', 'nurse@tupihospital.gov.ph', 'Active'),
+(7, 'Clarisse Mae', 'Santos', 'medtech', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'MedTech', 'medtech@tupihospital.gov.ph', 'Active'),
+(8, 'Kareen Joy', 'Ramos', 'pharmacist', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Pharmacist', 'pharmacist@tupihospital.gov.ph', 'Active'),
+(9, 'Maria', 'Castillo', 'cashier', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Billing', 'cashier@tupihospital.gov.ph', 'Active'),
+(10, 'Daniel', 'Lewis', 'dr.lewis', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Doctor', 'dr.lewis@tupihospital.gov.ph', 'Active'),
+(11, 'Elena', 'Villanueva', 'dr.villanueva', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Doctor', 'dr.villanueva@tupihospital.gov.ph', 'Active'),
+(12, 'James', 'Wilson', 'dr.wilson', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Doctor', 'dr.wilson@tupihospital.gov.ph', 'Active'),
+(13, 'Sophia', 'Miller', 'dr.miller', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Doctor', 'dr.miller@tupihospital.gov.ph', 'Active'),
+(14, 'Carlos', 'Reyes', 'staff.reyes', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Nurse', 'carlos.reyes@tupihospital.gov.ph', 'Active'),
+(15, 'Ana', 'Bautista', 'staff.bautista', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Nurse', 'ana.bautista@tupihospital.gov.ph', 'Active'),
+(16, 'Michael', 'Chang', 'registrator2', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Register', 'michael.chang@tupihospital.gov.ph', 'Active'),
+(17, 'Joy', 'Mendoza', 'medtech2', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'MedTech', 'joy.mendoza@tupihospital.gov.ph', 'Active'),
+(18, 'Grace', 'DelaCruz', 'pharmacist2', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Pharmacist', 'grace.delacruz@tupihospital.gov.ph', 'Active'),
+(19, 'Arthur', 'Morales', 'cashier2', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Billing', 'arthur.morales@tupihospital.gov.ph', 'Active'),
+(20, 'Teresa', 'Aquino', 'records2', '$2y$10$GHaJyI0C1GeqyA4AU3ILT.YmKyr/KbViPz9W1M1yGPZlKynUW1Bk.', 'Records', 'teresa.aquino@tupihospital.gov.ph', 'Active')
 ON DUPLICATE KEY UPDATE `Role`=VALUES(`Role`), `PasswordHash`=VALUES(`PasswordHash`);
 
 -- ============================================================================
@@ -636,3 +638,6 @@ ON DUPLICATE KEY UPDATE `FileName`=VALUES(`FileName`);
 
 
 -- Clinical and operational additions populated successfully.
+
+SET FOREIGN_KEY_CHECKS=1;
+

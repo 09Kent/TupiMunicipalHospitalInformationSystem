@@ -4,14 +4,17 @@
 /**
  * Escape string for HTML
  */
+if (!function_exists('e')) {
 function e(?string $string): string
 {
     return htmlspecialchars((string)$string, ENT_QUOTES, 'UTF-8');
+}
 }
 
 /**
  * Generate or retrieve CSRF token
  */
+if (!function_exists('csrf_token')) {
 function csrf_token(): string
 {
     if (empty($_SESSION['csrf_token'])) {
@@ -19,10 +22,12 @@ function csrf_token(): string
     }
     return $_SESSION['csrf_token'];
 }
+}
 
 /**
  * Validate CSRF token
  */
+if (!function_exists('validate_csrf')) {
 function validate_csrf(?string $token): bool
 {
     if (empty($_SESSION['csrf_token']) || empty($token)) {
@@ -30,10 +35,12 @@ function validate_csrf(?string $token): bool
     }
     return hash_equals($_SESSION['csrf_token'], $token);
 }
+}
 
 /**
  * Format Date nicely (e.g. 16 Aug 2026)
  */
+if (!function_exists('format_date')) {
 function format_date(?string $dateString, string $format = 'd M Y'): string
 {
     if (!$dateString || $dateString === '0000-00-00') return '—';
@@ -44,10 +51,12 @@ function format_date(?string $dateString, string $format = 'd M Y'): string
         return $dateString;
     }
 }
+}
 
 /**
  * Format Time nicely (e.g. 09:30 AM)
  */
+if (!function_exists('format_time')) {
 function format_time(?string $timeString): string
 {
     if (!$timeString) return '—';
@@ -58,10 +67,12 @@ function format_time(?string $timeString): string
         return $timeString;
     }
 }
+}
 
 /**
  * Get patient status badge styling
  */
+if (!function_exists('get_patient_status_badge')) {
 function get_patient_status_badge(?string $status): string
 {
     switch ($status) {
@@ -78,10 +89,12 @@ function get_patient_status_badge(?string $status): string
             return 'bg-emerald-50 text-emerald-700 border border-emerald-200';
     }
 }
+}
 
 /**
  * Get vital sign status color
  */
+if (!function_exists('get_vital_status_class')) {
 function get_vital_status_class(?string $status): string
 {
     switch ($status) {
@@ -94,10 +107,12 @@ function get_vital_status_class(?string $status): string
             return 'text-emerald-600';
     }
 }
+}
 
 /**
  * Get queue status badge
  */
+if (!function_exists('get_queue_badge')) {
 function get_queue_badge(?string $status): string
 {
     switch ($status) {
@@ -114,10 +129,12 @@ function get_queue_badge(?string $status): string
             return 'bg-amber-100 text-amber-800 border border-amber-200 font-semibold';
     }
 }
+}
 
 /**
  * Get task status badge
  */
+if (!function_exists('get_task_badge')) {
 function get_task_badge(?string $status): string
 {
     switch ($status) {
@@ -132,10 +149,12 @@ function get_task_badge(?string $status): string
             return 'bg-amber-100 text-amber-800 border border-amber-200 font-semibold';
     }
 }
+}
 
 /**
  * Priority badge styling
  */
+if (!function_exists('get_priority_badge')) {
 function get_priority_badge(?string $priority): string
 {
     switch ($priority) {
@@ -149,10 +168,12 @@ function get_priority_badge(?string $priority): string
             return 'bg-slate-100 text-slate-600 border border-slate-200';
     }
 }
+}
 
 /**
  * JSON response helper
  */
+if (!function_exists('json_response')) {
 function json_response(array $data, int $statusCode = 200): void
 {
     http_response_code($statusCode);
@@ -160,10 +181,12 @@ function json_response(array $data, int $statusCode = 200): void
     echo json_encode($data);
     exit;
 }
+}
 
 /**
  * Nurse portal base URL
  */
+if (!function_exists('nurse_url')) {
 function nurse_url(string $path = ''): string
 {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
@@ -173,10 +196,12 @@ function nurse_url(string $path = ''): string
     $path = ltrim($path, '/');
     return $protocol . $host . $prefix . '/Section/Nurse/' . $path;
 }
+}
 
 /**
  * Doctor portal URL helper
  */
+if (!function_exists('doctor_url')) {
 function doctor_url(string $path = ''): string
 {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
@@ -186,10 +211,12 @@ function doctor_url(string $path = ''): string
     $path = ltrim($path, '/');
     return $protocol . $host . $prefix . '/Section/Doctor/' . $path;
 }
+}
 
 /**
  * Register portal URL helper
  */
+if (!function_exists('register_url')) {
 function register_url(string $path = ''): string
 {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https://" : "http://";
@@ -198,4 +225,5 @@ function register_url(string $path = ''): string
     
     $path = ltrim($path, '/');
     return $protocol . $host . $prefix . '/Section/Register/' . $path;
+}
 }

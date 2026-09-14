@@ -2,10 +2,10 @@
 // Nurse/views/dashboard/index.php
 
 require_once __DIR__ . '/../../config/Database.php';
-require_once __DIR__ . '/../../includes/session.php';
-require_once __DIR__ . '/../../includes/functions.php';
-require_once __DIR__ . '/../../includes/demo_data.php';
-require_once __DIR__ . '/../../includes/patient_monitor.php';
+require_once __DIR__ . '/../includes/session.php';
+require_once __DIR__ . '/../includes/functions.php';
+require_once __DIR__ . '/../includes/demo_data.php';
+require_once __DIR__ . '/../includes/patient_monitor.php';
 
 $pageTitle = 'Dashboard | Nurse On Duty • Tupi Municipal Hospital';
 $activeMenu = 'dashboard';
@@ -25,13 +25,13 @@ $criticalCount = count(array_filter($patients, fn($p) => $p['status'] === 'Criti
 $pendingTasks = count(array_filter($patients, fn($p) => $p['task_status'] === 'Pending'));
 $queueWaiting = count(array_filter($patients, fn($p) => in_array($p['queue_status'], ['Waiting', 'Called'])));
 
-require_once __DIR__ . '/../../includes/header.php';
-require_once __DIR__ . '/../../includes/sidebar.php';
+require_once __DIR__ . '/../includes/header.php';
+require_once __DIR__ . '/../includes/sidebar.php';
 ?>
 
 <div class="flex-1 flex flex-col min-w-0 overflow-y-auto h-screen">
   
-  <?php require_once __DIR__ . '/../../includes/topbar.php'; ?>
+  <?php require_once __DIR__ . '/../includes/topbar.php'; ?>
 
   <main class="p-6 sm:p-8 space-y-8 flex-1">
 
@@ -1312,4 +1312,4 @@ document.addEventListener('keydown', function(e) {
 });
 </script>
 
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>

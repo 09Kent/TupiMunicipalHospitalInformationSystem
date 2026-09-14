@@ -2,9 +2,10 @@
 // Doctor/includes/session.php
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    @session_start();
 }
 
+if (!class_exists('Session', false)) {
 /**
  * Session Helper Functions for Doctor Portal
  */
@@ -90,3 +91,4 @@ class Session
         session_destroy();
     }
 }
+} // end class_exists guard

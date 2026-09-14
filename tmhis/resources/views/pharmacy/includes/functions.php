@@ -4,14 +4,17 @@
 /**
  * Escape string for HTML output
  */
+if (!function_exists('e')) {
 function e(?string $string): string
 {
     return htmlspecialchars((string)$string, ENT_QUOTES, 'UTF-8');
+}
 }
 
 /**
  * Generate or retrieve CSRF token
  */
+if (!function_exists('csrf_token')) {
 function csrf_token(): string
 {
     if (empty($_SESSION['csrf_token'])) {
@@ -19,10 +22,12 @@ function csrf_token(): string
     }
     return $_SESSION['csrf_token'];
 }
+}
 
 /**
  * Format Date nicely (e.g. 28 Aug 2026)
  */
+if (!function_exists('format_date')) {
 function format_date(?string $dateString, string $format = 'd M Y'): string
 {
     if (!$dateString || $dateString === '0000-00-00') return '—';
@@ -33,10 +38,12 @@ function format_date(?string $dateString, string $format = 'd M Y'): string
         return $dateString;
     }
 }
+}
 
 /**
  * Get Prescription status badge class
  */
+if (!function_exists('get_rx_status_badge')) {
 function get_rx_status_badge(?string $status): string
 {
     return match($status) {
@@ -49,10 +56,12 @@ function get_rx_status_badge(?string $status): string
         default                => 'bg-slate-100 text-slate-700 border border-slate-200',
     };
 }
+}
 
 /**
  * Get Inventory status badge class
  */
+if (!function_exists('get_inventory_status_badge')) {
 function get_inventory_status_badge(?string $status): string
 {
     return match($status) {
@@ -64,10 +73,12 @@ function get_inventory_status_badge(?string $status): string
         default         => 'bg-slate-100 text-slate-700 border border-slate-200',
     };
 }
+}
 
 /**
  * Get Priority badge class
  */
+if (!function_exists('get_priority_badge')) {
 function get_priority_badge(?string $priority): string
 {
     return match($priority) {
@@ -77,10 +88,12 @@ function get_priority_badge(?string $priority): string
         default   => 'bg-slate-100 text-slate-600 border border-slate-200',
     };
 }
+}
 
 /**
  * Days until expiry
  */
+if (!function_exists('days_until_expiry')) {
 function days_until_expiry(string $expiryDate): int
 {
     try {
@@ -90,4 +103,5 @@ function days_until_expiry(string $expiryDate): int
     } catch (Exception $e) {
         return 999;
     }
+}
 }

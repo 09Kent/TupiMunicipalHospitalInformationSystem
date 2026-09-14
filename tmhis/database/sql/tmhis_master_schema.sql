@@ -4,6 +4,8 @@
 
 USE `MedicalRegistrationDB`;
 
+SET FOREIGN_KEY_CHECKS=0;
+
 -- =========================================================================
 -- 1. SYSTEM CONFIGURATION & ADMIN TABLES (Role 1: System Administrator)
 -- =========================================================================
@@ -445,3 +447,5 @@ INSERT INTO `record_release_requests` (`RequestID`, `RequestNumber`, `PatientID`
 (1, 'REQ-2026-001', 3, 'Clinical Summary', 'Eduardo Bautista', 'Self', 'PhilHealth Claims & Employer Sickness Benefit', 'Approved / Processing', 'Mark Anthony Valenzuela, RMT'),
 (2, 'REQ-2026-002', 10, 'Complete Medical History', 'Angelica Morales', 'Self', 'Personal Health Record & Specialist Transfer', 'Released', 'Mark Anthony Valenzuela, RMT')
 ON DUPLICATE KEY UPDATE `RequestNumber`=VALUES(`RequestNumber`);
+
+SET FOREIGN_KEY_CHECKS=1;

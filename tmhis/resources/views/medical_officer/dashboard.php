@@ -20,7 +20,7 @@ require_once __DIR__ . '/config/data.php';
   <meta name="description" content="Tupi Municipal Hospital Information Management System - Medical Records Officer Portal">
   
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/section/records/css/styles.css">
   
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -57,8 +57,8 @@ require_once __DIR__ . '/config/data.php';
   <?php include __DIR__ . '/includes/modals.php'; ?>
 
   <!-- App Scripts -->
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <script src="/section/records/js/data.js"></script>
+  <script src="/section/records/js/app.js"></script>
 
 </body>
 </html>

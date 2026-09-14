@@ -47,7 +47,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="/section/billing/assets/css/styles.css">
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800 antialiased flex">
 
@@ -1729,7 +1729,7 @@
   <div id="printable-area" class="hidden"></div>
 
   <!-- Application Logic Scripts -->
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="/section/billing/assets/js/data.js"></script>
+  <script src="/section/billing/assets/js/app.js"></script>
 </body>
 </html>

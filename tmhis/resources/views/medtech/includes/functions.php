@@ -4,14 +4,17 @@
 /**
  * Escape string for HTML
  */
+if (!function_exists('e')) {
 function e(?string $string): string
 {
     return htmlspecialchars((string)$string, ENT_QUOTES, 'UTF-8');
+}
 }
 
 /**
  * Generate or retrieve CSRF token
  */
+if (!function_exists('csrf_token')) {
 function csrf_token(): string
 {
     if (empty($_SESSION['csrf_token'])) {
@@ -19,10 +22,12 @@ function csrf_token(): string
     }
     return $_SESSION['csrf_token'];
 }
+}
 
 /**
  * Validate CSRF token
  */
+if (!function_exists('validate_csrf')) {
 function validate_csrf(?string $token): bool
 {
     if (empty($_SESSION['csrf_token']) || empty($token)) {
@@ -30,10 +35,12 @@ function validate_csrf(?string $token): bool
     }
     return hash_equals($_SESSION['csrf_token'], $token);
 }
+}
 
 /**
  * Format Date nicely (e.g. 28 Aug 2026)
  */
+if (!function_exists('format_date')) {
 function format_date(?string $dateString, string $format = 'd M Y'): string
 {
     if (!$dateString || $dateString === '0000-00-00') return '—';
@@ -44,10 +51,12 @@ function format_date(?string $dateString, string $format = 'd M Y'): string
         return $dateString;
     }
 }
+}
 
 /**
  * Format Time nicely (e.g. 09:30 AM)
  */
+if (!function_exists('format_time')) {
 function format_time(?string $timeString): string
 {
     if (!$timeString) return '—';
@@ -58,10 +67,12 @@ function format_time(?string $timeString): string
         return $timeString;
     }
 }
+}
 
 /**
  * Get Lab Request status badge styling
  */
+if (!function_exists('get_request_status_badge')) {
 function get_request_status_badge(?string $status): string
 {
     switch ($status) {
@@ -79,10 +90,12 @@ function get_request_status_badge(?string $status): string
             return 'bg-slate-100 text-slate-700 border border-slate-200';
     }
 }
+}
 
 /**
  * Get Sample Processing status badge styling
  */
+if (!function_exists('get_sample_status_badge')) {
 function get_sample_status_badge(?string $status): string
 {
     switch ($status) {
@@ -102,10 +115,12 @@ function get_sample_status_badge(?string $status): string
             return 'bg-slate-100 text-slate-700 border border-slate-200';
     }
 }
+}
 
 /**
  * Get Priority badge styling
  */
+if (!function_exists('get_priority_badge')) {
 function get_priority_badge(?string $priority): string
 {
     switch ($priority) {
@@ -118,10 +133,12 @@ function get_priority_badge(?string $priority): string
             return 'bg-slate-100 text-slate-600 border border-slate-200 font-semibold';
     }
 }
+}
 
 /**
  * Get Result Flag badge styling
  */
+if (!function_exists('get_flag_badge')) {
 function get_flag_badge(?string $flag): string
 {
     switch ($flag) {
@@ -136,10 +153,12 @@ function get_flag_badge(?string $flag): string
             return 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-medium';
     }
 }
+}
 
 /**
  * Automatic flag evaluator against standard laboratory reference ranges
  */
+if (!function_exists('evaluate_result_flag')) {
 function evaluate_result_flag(float $value, float $min, float $max, float $critLow = 0, float $critHigh = 999999): string
 {
     if ($value < $critLow || $value > $critHigh) {
@@ -152,4 +171,5 @@ function evaluate_result_flag(float $value, float $min, float $max, float $critL
         return 'High';
     }
     return 'Normal';
+}
 }

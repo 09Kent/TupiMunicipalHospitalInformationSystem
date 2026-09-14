@@ -1,6 +1,8 @@
 -- Doctor Portal Database Schema & Enhancements
 USE `MedicalRegistrationDB`;
 
+SET FOREIGN_KEY_CHECKS=0;
+
 -- 1. Specialties Table
 CREATE TABLE IF NOT EXISTS `specialties` (
   `SpecialtyID` INT AUTO_INCREMENT PRIMARY KEY,
@@ -404,3 +406,5 @@ INSERT INTO `allergy_records` (`AllergyID`, `PatientID`, `DoctorID`, `Allergen`,
 (3, 4, 17, 'Latex', 'Other', 'Moderate', 'Contact dermatitis, localized erythema and itching upon exposure', 'Active', '2026-08-15'),
 (4, 5, 15, 'Aspirin (NSAIDs)', 'Drug', 'Severe', 'Acute epigastric burning and bronchospasm', 'Active', '2026-08-15')
 ON DUPLICATE KEY UPDATE `PatientID`=VALUES(`PatientID`), `Allergen`=VALUES(`Allergen`);
+
+SET FOREIGN_KEY_CHECKS=1;

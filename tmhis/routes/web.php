@@ -4,6 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\NurseController;
+use App\Http\Controllers\RecordsController;
+use App\Http\Controllers\MedTechController;
+use App\Http\Controllers\PharmacyController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\Api\RegisterApiController;
 
 // Public Landing Page
@@ -54,33 +62,32 @@ Route::prefix('api/register')->name('api.register.')->group(function () {
 });
 
 // =========================================================================
-// STUB ROUTES for remaining role dashboards (to be fully migrated)
-// These ensure login redirects work without crashing.
+// DEPARTMENT ROLE DASHBOARDS
 // =========================================================================
 
 Route::middleware(['auth'])->group(function () {
     // Admin
-    Route::get('/admin', fn() => view('stubs.dashboard', ['role' => 'Admin', 'section' => 'Administration']))->name('admin.dashboard');
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     
     // Director / Chief Medical Officer
-    Route::get('/director', fn() => view('stubs.dashboard', ['role' => 'Director', 'section' => 'Chief Medical Director']))->name('director.dashboard');
+    Route::get('/director', [DirectorController::class, 'dashboard'])->name('director.dashboard');
     
-    // Medical Records
-    Route::get('/records', fn() => view('stubs.dashboard', ['role' => 'Records', 'section' => 'Medical Records']))->name('records.dashboard');
+    // Medical Records Officer
+    Route::get('/records', [RecordsController::class, 'dashboard'])->name('records.dashboard');
     
-    // Doctor
-    Route::get('/doctor', fn() => view('stubs.dashboard', ['role' => 'Doctor', 'section' => 'Doctor Consultation']))->name('doctor.dashboard');
+    // Doctor Consultation
+    Route::get('/doctor', [DoctorController::class, 'dashboard'])->name('doctor.dashboard');
     
-    // Nurse
-    Route::get('/nurse', fn() => view('stubs.dashboard', ['role' => 'Nurse', 'section' => 'Nursing Station']))->name('nurse.dashboard');
+    // Nursing Station
+    Route::get('/nurse', [NurseController::class, 'dashboard'])->name('nurse.dashboard');
     
-    // MedTech
-    Route::get('/medtech', fn() => view('stubs.dashboard', ['role' => 'MedTech', 'section' => 'Medical Technology / Laboratory']))->name('medtech.dashboard');
+    // Medical Technologist / Laboratory
+    Route::get('/medtech', [MedTechController::class, 'dashboard'])->name('medtech.dashboard');
     
     // Pharmacy
-    Route::get('/pharmacy', fn() => view('stubs.dashboard', ['role' => 'Pharmacist', 'section' => 'Pharmacy']))->name('pharmacy.dashboard');
+    Route::get('/pharmacy', [PharmacyController::class, 'dashboard'])->name('pharmacy.dashboard');
     
-    // Billing / Cashier / Accountant
-    Route::get('/billing', fn() => view('stubs.dashboard', ['role' => 'Billing', 'section' => 'Billing & Cashier']))->name('billing.dashboard');
+    // Billing & Cashier
+    Route::get('/billing', [BillingController::class, 'dashboard'])->name('billing.dashboard');
 });
 

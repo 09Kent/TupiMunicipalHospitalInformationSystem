@@ -2,9 +2,10 @@
 // Med_Tech/includes/session.php
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    @session_start();
 }
 
+if (!class_exists('Session', false)) {
 class Session
 {
     public static function set(string $key, mixed $value): void
@@ -73,3 +74,4 @@ class Session
         ];
     }
 }
+} // end class_exists guard
